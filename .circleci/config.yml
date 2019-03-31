@@ -37,12 +37,12 @@ jobs:
       - run: yarn ng build --prod --progress=false
       - run: yarn ng test --watch=false
 
-      -run:
+      - run:
         command: |
           docker build -t parnygren.azurecr.io/circlecitest:1.0 .
-      -run:
+      - run:
         command: |
           docker login --username $DOCKER_USER --password $DOCKER_PASS parnygren.azurecr.io
-      -run:
+      - run:
         command: |
           docker push parnygren.azurecr.io/circlecitest:1.0
