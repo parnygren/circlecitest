@@ -38,7 +38,7 @@ jobs:
       - run: yarn ng test --watch=false
 
       - run:
-        command: |
+        command:
           docker build -t parnygren.azurecr.io/circlecitest:1.0 .
       - run:
         command: |
