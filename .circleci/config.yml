@@ -18,6 +18,7 @@ jobs:
 
     steps:
       - checkout
+      - setup-remote-docker
 
       # Download and cache dependencies
       - restore_cache:
@@ -33,6 +34,15 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run: yarn ng build --prod --progress=false
       - run: yarn ng test --watch=false
+
+      -run:
+        command: |
+          docker build -t parnygren.azurecr.io/circlecitest:1.0
+      -run:
+        command: |
+          docker login --username $DOCKER_USER --password
+      -run:
+        command: |
+          docker push parnygren.azurecr.io/circlecitest:1.0
