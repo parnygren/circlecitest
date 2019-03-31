@@ -39,10 +39,10 @@ jobs:
 
       -run:
         command: |
-          docker build -t parnygren.azurecr.io/circlecitest:1.0
+          docker build -t parnygren.azurecr.io/circlecitest:1.0 .
       -run:
         command: |
-          docker login --username $DOCKER_USER --password
+          docker login --username $DOCKER_USER --password $DOCKER_PASS parnygren.azurecr.io
       -run:
         command: |
           docker push parnygren.azurecr.io/circlecitest:1.0
